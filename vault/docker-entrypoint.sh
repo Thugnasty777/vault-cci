@@ -30,7 +30,7 @@ setup_token() {
   vault login "$root_token"
 
   # period of 32 days which is the maximum permitted
-  vault token create -period="5m" > /vault/file/client-token;
+  vault token create -period="5m" -renewable="true" > /vault/file/client-token;
   grep -e 'token ' /vault/file/client-token | sed 's/^token\W*//g' > /vault/__restricted/client-token;
 }
 
